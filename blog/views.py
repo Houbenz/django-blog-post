@@ -1,27 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Post
 
 
-posts = [
-    {
-        "title":"post blog 1",
-        "author":"hocine benzagouta",
-        "create_date":"19-01-2021",
-        "content":"there's some content here",
-    } ,
-    
-    {
-        "title":"post blog2",
-        "author":"John Doe",
-        "create_date":"20-01-2021",
-        "content":"this is a second post",
-    }
 
-]
 
 def home(request):
     context = {
-        "posts":posts,
+        "posts":Post.objects.all(),
         "title":"fire",
     }
     #put the request and the template path and the context inside the render method, not inside HttpResponse,
