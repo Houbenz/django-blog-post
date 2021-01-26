@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+                <div class="card post w-220">
+                    <div class="card-header">
+                        New Post
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{post.author}}</h6>
+                        <p class="card-text">{{post.content}}</p>
+                        <a href="#" class="card-link">{{post.create_date}}</a>
+                    </div>
+                </div>
+    {%endfor%}
+
+{% endblock content%} 
+
+
