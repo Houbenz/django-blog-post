@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="card  p-3 m-3">
+            <small class="text-muted">You have been Log out 
+                 <a href="{% url 'login' %}" class="ml-2">Log in Again</a>
+            </small>
+    </div>
+{% endblock content %} 
