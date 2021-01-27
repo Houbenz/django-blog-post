@@ -33,13 +33,33 @@
           </ul>
         </div>
 
-        <button class="btn btn-secodary">Login</button>
-        <button class="btn btn-secodary">Register</button>
+        <a  class="btn btn-secodary" href="{% url 'register' %}">Register</a>
+        <a  class="btn btn-secodary" href="#">Login</a>
       </nav>
+
+
 
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-8 ">
+            {% if messages %}
+                {% for message in messages%}
+                      {% if message.tags == "warning" %}
+
+                            <div class="alert-danger p-3 mt-2">
+                                {{message}}
+                            </div>  
+
+                      {% else %}
+
+                            <div class="alert-{{message.tags}} p-3 mt-2">
+                                {{message}}
+                            </div>
+
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
             {% block content %}{% endblock %}
         </div>
 
