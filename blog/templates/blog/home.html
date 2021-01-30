@@ -8,7 +8,10 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{post.title}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{post.author}}</h6>
+                        <div class="d-flex flex-row m-3">
+                        <img class="rounded mr-2" width="35px" height="35px" src="{{post.author.profile.image.url}}">
+                        <h6 class="mb-2 text-muted">{{post.author}}</h6>
+                        </div>
                         <p class="card-text">{{post.content}}</p>
                         <a href="#" class="card-link">{{post.create_date|date:"F d, Y"}}</a>
                     </div>
