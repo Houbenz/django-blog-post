@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from .models import Post
 
 
@@ -15,6 +16,18 @@ def home(request):
     #put the request and the template path and the context inside the render method, not inside HttpResponse,
     return render(request,'blog/home.html',context)
 
+class UserPostListView(ListView):
+    model=Post
+    #by default in class based views django looks for a template, with naming convention
+    #<app>/<model>_<view>
+    template_name='blog/user_posts.html'
+    context_object_name='posts'
+    paginate_by = 5
+    def get_queryset(self):
+        user = get_object_or_404(User,username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-create_date')
+
+
 class PostListView(ListView):
     model=Post
     #by default in class based views django looks for a template, with naming convention
@@ -22,7 +35,7 @@ class PostListView(ListView):
     template_name='blog/home.html'
     context_object_name='posts'
     ordering= ['-create_date']
-    paginate_by = 2
+    paginate_by = 5
 
 class PostDetailView(DetailView):
     model=Post

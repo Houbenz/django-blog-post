@@ -9,7 +9,7 @@
             <h5 class="card-title">{{object.title}}</h5>
             <div class="d-flex flex-row m-3">
             <img class="rounded mr-2" width="35px" height="35px" src="{{object.author.profile.image.url}}">
-            <h6 class="mb-2 text-muted">{{object.author}}</h6>
+            <h6 class="mb-2 text-muted"><a href="{% url 'user-posts' object.author.username %}">{{post.author}}</a></h6>
             </div>
             <p class="card-text">{{object.content}}</p>
             <a href="#" class="card-link">{{object.create_date|date:"F d, Y"}}</a>
