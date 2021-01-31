@@ -25,29 +25,34 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link btn" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-link btn" href="{% url 'blog-about' %}">About</a>
             </li>
           </ul>
-        </div>
-   
-        {% if user.is_authenticated %}
-                <div class="navbar-nav">
-                    <a  class="btn mr-1" href="{% url 'profile' %}">Profile</a>
-                    <a  class="btn btn-outline-warning" href="{% url 'logout' %}">Logout</a>
-                </div>
+        
+          <ul class="navbar-nav">
+        {% if user.is_authenticated %}  
+                <li class="nav-item">
+                    <a  class="nav-link btn mr-1" href="{% url 'post-create' %}">New post </a>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link btn mr-1" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link btn btn-outline-warning" href="{% url 'logout' %}">Logout</a>  
+                </li>
         {% else %}
-
-            <div class="navbar-nav">
-
-                <a  class="btn btn-outline-success mr-1" href="{% url 'register' %}">Register</a>
-                <a  class="btn btn-outline-info" href="{% url 'login' %}">Login</a>
-                
-            </div>
-  
+                 <li class="nav-item">
+                     <a  class="btn btn-outline-success mr-1" href="{% url 'register' %}">Register</a>
+                 </li>
+                <li class="nav-item">
+                    <a  class="btn btn-outline-info" href="{% url 'login' %}">Login</a>
+                </li>
         {% endif %}
+            </ul>
+        </div>
       </nav>
 
 

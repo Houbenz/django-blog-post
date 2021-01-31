@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="card post w-220">
+        
+        <div class="card-header">
+            Detailed
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{object.title}}</h5>
+            <div class="d-flex flex-row m-3">
+            <img class="rounded mr-2" width="35px" height="35px" src="{{object.author.profile.image.url}}">
+            <h6 class="mb-2 text-muted">{{object.author}}</h6>
+            </div>
+            <p class="card-text">{{object.content}}</p>
+            <a href="#" class="card-link">{{object.create_date|date:"F d, Y"}}</a>
+
+            {% if user.id == post.author.id %}
+                <div class=" d-flex flex-row justify-content-end">
+                    <a class="btn btn-outline-warning mr-1" href=" {% url 'post-update' post.id %}">update</a>
+                    <a class="btn btn-outline-danger" href=" {% url 'post-delete' post.id %}">delete</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock content %}

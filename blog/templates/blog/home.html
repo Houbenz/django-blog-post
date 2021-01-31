@@ -3,17 +3,26 @@
 {% block content %}
     {% for post in posts %}
                 <div class="card post w-220">
+                    <!--
                     <div class="card-header">
                         New Post
                     </div>
+                    -->
                     <div class="card-body">
-                        <h5 class="card-title">{{post.title}}</h5>
+                        <h5 class="card-title"><a class ="text-dark"href="{% url 'post-detail' post.id %} ">{{post.title}}</a></h5>
                         <div class="d-flex flex-row m-3">
-                        <img class="rounded mr-2" width="35px" height="35px" src="{{post.author.profile.image.url}}">
-                        <h6 class="mb-2 text-muted">{{post.author}}</h6>
+                            <img class="rounded mr-2" width="35px" height="35px" src="{{post.author.profile.image.url}}">
+                            <h6 class="mb-2 text-muted">{{post.author}}</h6>
                         </div>
                         <p class="card-text">{{post.content}}</p>
                         <a href="#" class="card-link">{{post.create_date|date:"F d, Y"}}</a>
+
+                        {% if user.is_authenticated and user == post.author %}
+                            <div class=" d-flex flex-row justify-content-end">
+                                <a class="btn btn-sm btn-outline-warning mr-1" href=" {% url 'post-update' post.id %}">update</a>
+                                <a class="btn btn-sm btn-outline-danger" href=" {% url 'post-delete' post.id %}">delete</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
     {%endfor%}
